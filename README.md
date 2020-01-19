@@ -22,7 +22,7 @@ Working example of using Python 3 to browse for, extract, transform and analyse 
 
 On running the script, initial outputs will show the web requests getting the HTML documents from S1Jobs.com
 
-```
+```python
 Fetching page 1
 Fetching page 2
 Fetching page 3
@@ -37,7 +37,7 @@ The whole process is repeated until there are no more job listings left to read,
 
 The first bit of insight returned is the total volume of job listings extracted by the scraper.
 
-```
+```python
 # How many jobs did we find?
 
 print(len(df.index))
@@ -49,13 +49,13 @@ print(len(df.index))
 
 Good to know, but not useful on it's own. So we apply some groupings and a summarisation to the returned data frame to display the number of listings in each town/city.
 
-```
+```python
 where = df.groupby(["loc"], as_index=False)["job"].count()
 ```
 
 Then we visualise using Python's `Seaborn` package
 
-```
+```python
 # Then, plot with location on the x axis and count of job on the y
 
 where_plot = sns.barplot(x = "loc", y = "job", data = where)
@@ -78,7 +78,7 @@ If you're a Python person, and live in Edinburgh or Glasgow there's a decent amo
 
 Next, we'll have a look at who is advertising these roles. If you're in the market for a job, you're going to want to be on the books with recruiters who specialise in those skills, so who are they?
 
-```
+```python
 ## Who is advertising the roles?
 # First, group the df on by (advertiser), counting each job
 
@@ -91,7 +91,7 @@ who = who.sort_values(by = ["job"] , ascending = False)
 print(who)
 ```
 
-```
+```python
 by  job
 Be-IT Resourcing Ltd   20
 HAYS    7
@@ -107,7 +107,7 @@ So we can see that Be-IT listed by far the most Python roles on the day we colle
 
 The last step taken was to show us the words which often appear in the job titles, to give us some insight into the role levels or additional skills which are commonly being sought in the market that day.
 
-```
+```python
 # Word profiling, which words are common in job titles
 
 # First, let's clean the data, removing some commonly used symbols and stop words which aren't useful in the analysis
@@ -184,7 +184,7 @@ wordgroup = wordgroup[wordgroup["word"] != ""]
 print(wordgroup.to_string())
 ```
 
-```
+```python
 word  count
 engineer     30
 developer     19
